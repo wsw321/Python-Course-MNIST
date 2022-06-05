@@ -3,13 +3,13 @@ from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QToolBar, QLabel
     QHBoxLayout, QGridLayout, QAction, QToolButton, QColorDialog, QSplitter, QLineEdit, QTextEdit, QLayout
 from PyQt5.QtGui import QPainter, QColor, QFont, QPalette, QPixmap, QPen, QImage, QIcon
 from PyQt5.QtCore import Qt, QObject, pyqtSignal, QPoint
+
 from models.MySimpleNet import MySimpleNet as Net
 from run import evaluate
-# from mnist import Net, evaluate
+
 import torch
 from PIL import Image
-import numpy as np
-import matplotlib.pyplot as plt
+
 
 class DrawWidget(QWidget):
     def __init__(self):
@@ -193,33 +193,6 @@ class MAIN_Window(QMainWindow):
 
     def set_width(self, w):
         self.draw_widget.set_width(w)
-
-    # # reference : https://zhuanlan.zhihu.com/p/30120447
-    # def judge_edge(self, img, length, flag, val=0):
-    #     size = [-1, -1]
-    #     for i in range(length):
-    #         if flag == 'row':
-    #             line1 = img[i, img[i, :] > val]
-    #             line2 = img[length - 1 - i, img[length - 1 - i, :] > val]
-    #         else:
-    #             line1 = img[img[:, i] > val, i]
-    #             line2 = img[img[:, length - i - 1] > val, length - 1 - i]
-    #         if len(line1) > 0 and size[0] == -1:
-    #             size[0] = i
-    #         if len(line2) > 0 and size[1] == -1:
-    #             size[1] = length - i - 1
-    #         if size[0] != -1 and size[1] != -1:
-    #             return size
-    #     return [0, length]
-    #
-    # def crop(self, img):
-    #     height = img.shape[0]
-    #     width = img.shape[1]
-    #     size = []
-    #     size.append(self.judge_edge(img, height, 'row', val=0))
-    #     size.append(self.judge_edge(img, width, 'column', val=0))
-    #     return img[max(size[0][0]-10, 0):min(size[0][1] + 10, height),
-    #            max(size[1][0]-10, 0):min(size[1][1] + 10, width)]
 
     def calc(self):
         self.draw_widget.pix.save('test.jpg', 'JPG')
